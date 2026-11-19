@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>서울 자전거 편의 지도</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🚲</text></svg>">
+  <link rel="stylesheet" href="vendor/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="map"></div>
+
+  <div id="panel">
+    <div id="top">
+      <div class="brand"><span>🚲</span> 서울 자전거 편의 지도</div>
+      <div id="stops"></div>
+      <div id="suggest" hidden></div>
+    </div>
+    <div id="sheet" class="hidden">
+      <div class="handle" id="handle"><span></span></div>
+      <div id="sheet-body"></div>
+    </div>
+  </div>
+
+  <div id="fabs">
+    <button id="btn-compass" class="fab" title="누르면 북쪽 정렬" aria-label="나침반">
+      <svg viewBox="-20 -20 40 40"><g id="needle">
+        <polygon points="0,-14 5,0 -5,0" fill="#e03131"/><polygon points="0,14 5,0 -5,0" fill="#adb5bd"/>
+        <circle r="2.4" fill="#495057"/></g></svg>
+    </button>
+    <button id="btn-3d" class="fab txt" title="2D / 2.5D 전환">2D</button>
+    <button id="btn-comfort" class="fab" title="선택한 경로를 불편도 색으로 보기" aria-label="불편도 색">
+      <svg viewBox="0 0 24 24"><rect x="3" y="10" width="4" height="4" rx="1" fill="#1a9850"/><rect x="8" y="10" width="4" height="4" rx="1" fill="#fee08b"/><rect x="13" y="10" width="4" height="4" rx="1" fill="#fc8d59"/><rect x="18" y="10" width="3" height="4" rx="1" fill="#d73027"/></svg>
+    </button>
+    <button id="btn-loc" class="fab" title="내 위치" aria-label="내 위치">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="#1c7ed6"/><circle cx="12" cy="12" r="8" fill="none" stroke="#1c7ed6" stroke-width="2"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4" stroke="#1c7ed6" stroke-width="2"/></svg>
+    </button>
+    <div class="zoom">
+      <button id="btn-zin" class="fab txt" aria-label="확대">＋</button>
+      <button id="btn-zout" class="fab txt" aria-label="축소">－</button>
+    </div>
+  </div>
+  <div id="dirlabel"></div>
+
+  <div id="pickbar" hidden></div>
+  <div id="toast" hidden></div>
+
+  <div id="modal" hidden>
+    <div class="modal-card">
+      <h2>⚠️ 이용 전 꼭 확인해 주세요</h2>
+      <ul>
+        <li>🚫 <b>주행 중에는 절대 휴대폰을 조작하지 마세요.</b></li>
+        <li>🗺️ 이 지도는 <b>출발 전 경로를 미리 익히는 용도</b>로만 사용해 주세요.</li>
+        <li>🚦 실제 도로 상황(공사·통제·신호)과 다를 수 있어요. 항상 현장 상황과 교통법규를 우선해 주세요.</li>
+        <li>📊 경로 점수는 공개 데이터(OSM·고도·자전거도로)로 계산한 <b>참고용</b>이에요.</li>
+      </ul>
+      <button id="modal-ok" class="primary">확인했어요</button>
+    </div>
+  </div>
+
+  <div id="splash">
+    <div class="splash-in">
+      <div class="logo">🚲</div>
+      <div class="title">서울 자전거 편의 지도</div>
+      <div class="bar"><div id="bar-fill"></div></div>
+      <div id="splash-msg">지도 데이터를 불러오는 중이에요…</div>
+    </div>
+  </div>
+
+  <script src="vendor/maplibre-gl.js"></script>
+  <script src="vendor/deck.min.js"></script>
+  <script src="config.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
